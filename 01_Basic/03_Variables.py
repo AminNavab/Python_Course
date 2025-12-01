@@ -1,5 +1,6 @@
 # int
 x = 10
+s = -10
 print(x)
 print(type(x))
 
@@ -11,8 +12,17 @@ print(type(x_1), type(x_2),sep=" - ")
 
 # float - duoble
 x_3 = 1.10
+s_1 = -1.10
+s_2 = 10
+s_3 = -10
 print(x_3)
 print(type(x_3))
+
+# complex: Complex numbers are written with a "j" as the imaginary part
+z = 1j 
+s_4 = 4+5j
+print(z)
+print(type(z))  
 
 # bool
 x_4 = False
@@ -21,11 +31,18 @@ print(x_4, x_5, sep=" - ")
 print(type(x_4),type(x_5), sep=" - ")
 #--------------------------------------------
 # type casting
-a = int(5)
-a_1 = str(5)
-a_2 = float(5)
-print(a, a_1, a_2, sep=" - ")
-print(type(a), type(a_1), type(a_2), sep=" - ")
+f = int(1)   # x will be 1
+f = int(2.8) # y will be 2
+f = int("3") # z will be 3
+
+x = str("s1") # x will be 's1'
+y = str(2)    # y will be '2'
+z = str(3.0)  # z will be '3.0' 
+
+x = float(1)     # x will be 1.0
+y = float(2.8)   # y will be 2.8
+z = float("3")   # z will be 3.0
+w = float("4.2") # w will be 4.2
 #----------------------------------------------------
 # Camel Case: myVariableName = "John"
 # Pascal Case: MyVariableName = "John"
