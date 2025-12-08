@@ -1,3 +1,6 @@
+import functools
+
+
 # scope
 # A variable is only available from inside the region it is created. This is called scope.
 # Local Scope:
@@ -171,3 +174,64 @@ def myfunction():
   return "Tobias"
 
 print(myfunction())
+
+# Preserving Function Metadata: Functions in Python has metadata that can be accessed using the __name__ and __doc__ attributes.
+def myfunction():
+  return "Have a great day!"
+
+print(myfunction.__name__)
+# But, when a function is decorated, the metadata of the original function is lost.
+def changecase(func):
+  def myinner():
+    return func().upper()
+  return myinner
+
+@changecase
+def myfunction():
+  return "Have a great day!"
+
+print(myfunction.__name__)
+# To fix this, Python has a built-in function called functools.wraps that can be used to preserve the original function's name and docstring.
+def changecase(func):
+  @functools.wraps(func)
+  def myinner():
+    return func().upper()
+  return myinner
+
+@changecase
+def myfunction():
+  return "Have a great day!"
+
+print(myfunction.__name__)
+#------------------------------------------------------------
+# Lambda Functions:
+"""A lambda function is a small anonymous function.
+A lambda function can take any number of arguments, but can only have one expression"""
+# Syntax => lambda arguments : expression
+x = lambda a: a*2
+print(x(4))
+x1 = lambda a,b: a*b
+print(x1(3,4))
+x2 = lambda a,b,c: a+b+c
+print(x2(2,3,4))
+w = lambda z: print(z+10)
+w(12)
+"""
+Why Use Lambda Functions?
+The power of lambda is better shown when you use them as an anonymous function inside another function.
+Say you have a function definition that takes one argument, and that argument will be multiplied with an unknown number:
+"""
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+
+print(mydoubler(11))
+# Using Lambda with map(): The map() function applies a function to every item in an iterable.
+num = [2,4,6,8]
+doubled = list(map(lambda a:2 *a, num))
+print(doubled)
+# Using Lambda with filter(): The filter() function creates a list of items for which a function returns True.
+num = [1,2,3,4,5,6,7,8,9]
+z= list(filter(lambda a: a%2 != 0, num))
+print(z)
